@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl, EmailStr
 
 
 class Image(BaseModel):
-   url: str
+   url: HttpUrl
    name: str
 
 class Item(BaseModel):
@@ -18,3 +18,12 @@ class Item(BaseModel):
       return self.name
 
 
+
+class BaseUser(BaseModel):
+   username: str
+   email: EmailStr
+   full_name: str | None = None
+
+
+class UserIn(BaseUser):
+   password: str
